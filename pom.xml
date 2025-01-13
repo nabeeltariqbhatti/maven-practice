@@ -95,6 +95,45 @@
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.6.1</version>
         </plugin>
+
+        <plugin>
+          <groupId>org.codehaus.modello</groupId>
+          <artifactId>modello-maven-plugin</artifactId>
+          <version>2.4.0</version>
+          <configuration>
+            <models>
+              <model>src/main/resources/model.mdo</model>
+            </models>
+            <version>1.0.0</version>
+          </configuration>
+          <executions>
+            <execution>
+              <id>myModel</id>
+              <phase>generate-sources</phase>
+              <goals>
+                <goal>java</goal>
+                <goal>xpp3-reader</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>myModel-site-xsd</id>
+              <phase>pre-site</phase>
+              <goals>
+                <goal>xsd</goal>
+              </goals>
+              <configuration>
+                <outputDirectory>target/generated-site/resources/xsd</outputDirectory>
+              </configuration>
+            </execution>
+            <execution>
+              <id>myModel-site-doc</id>
+              <phase>pre-site</phase>
+              <goals>
+                <goal>xdoc</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
       </plugins>
     </pluginManagement>
   </build>
